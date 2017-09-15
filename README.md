@@ -1,24 +1,16 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# create task
+curl -XPOST -H "Content-type: application/json" -d '{"task": {"title": "foo bar baz", "value": 1337, "state": "opened"}}' 'http://localhost:3000/api/ledgers/1/tasks'
 
-Things you may want to cover:
 
-* Ruby version
+# change task data
+curl -XPATCH -H "Content-type: application/json" -d '{"task": {"title": "foo bar baz", "value": 1337}}' 'http://localhost:3000/api/ledgers/1/tasks/2'
 
-* System dependencies
 
-* Configuration
+# close task
+curl -XPATCH -H "Content-type: application/json" -d '{"task": {"title": "foo bar baz", "value": 1337, "state": "closed"}}' 'http://localhost:3000/api/ledgers/1/tasks/1'
 
-* Database creation
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# complete task
+curl -XPATCH -H "Content-type: application/json" -d '{"task": {"state": "completed"}}' 'http://localhost:3000/api/ledgers/1/tasks/1'
