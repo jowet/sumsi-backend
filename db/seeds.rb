@@ -8,7 +8,9 @@
 
 # CLEANUP
 Ledger.delete_all
+ActiveRecord::Base.connection.reset_pk_sequence!('ledgers')
 Task.delete_all
+ActiveRecord::Base.connection.reset_pk_sequence!('tasks')
 
 # LEDGER
 ledger = Ledger.create(balance: 0)
