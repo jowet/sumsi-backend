@@ -9,6 +9,21 @@ class Task < ApplicationRecord # :nodoc:
 
   include AASM
 
+  # Validations
+  #-----------------------------------------------------------------
+
+  validates :title,
+            presence: true
+
+  validates :value,
+            numericality: {
+              only_integer: true,
+              greater_than: 0
+            }
+
+  validates :ledger,
+            presence: true
+
   # State Machine
   #-----------------------------------------------------------------
 
