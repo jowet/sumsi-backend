@@ -1,0 +1,4 @@
+example_id                        | status  | run_time        |
+--------------------------------- | ------- | --------------- |
+./spec/models/ledger_spec.rb[1:1] | pending | 0.00002 seconds |
+./spec/models/task_spec.rb[1:1]   | pending | 0.00001 seconds |

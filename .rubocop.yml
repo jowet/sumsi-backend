@@ -1,0 +1,62 @@
+AllCops:
+  Include:
+    - '**/Rakefile'
+    - '**/config.ru'
+    - 'lib/tasks/**'
+    - 'Gemfile'
+  Exclude:
+    - 'db/schema.rb'
+    - 'db/migrate/**'
+    - 'bin/*'
+    - 'lib/templates/**/*'
+    - spec/**/*
+    - 'vendor/**/*'
+
+Style/AndOr:
+  Enabled: false
+
+Rails/SkipsModelValidations:
+  Enabled: false
+
+Style/RaiseArgs:
+  EnforcedStyle: exploded
+
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: aligned
+
+Lint/EachWithObjectArgument:
+  Enabled: false
+
+Metrics/LineLength:
+  Max: 120
+
+Metrics/BlockLength:
+  Max: 30
+  Exclude:
+    - 'Rakefile'
+    - '**/*.rake'
+    - 'spec/**/*.rb'
+    - 'db/seeds.rb'
+    - 'config/routes.rb'
+    - 'vendor/**/*'
+
+Metrics/ClassLength:
+  CountComments: false
+  Max: 210
+
+Style/RegexpLiteral:
+  Enabled: false
+
+Metrics/ModuleLength:
+  CountComments: false
+  Max: 205
+
+Metrics/MethodLength:
+  Max: 20
+  CountComments: false
+
+Metrics/AbcSize:
+  Max: 30
+
+Rails:
+  Enabled: true
