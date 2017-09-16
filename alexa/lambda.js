@@ -1,5 +1,8 @@
 var Alexa = require('alexa-sdk');
 var http = require('http');
+var config = {
+    host: 'sumsi-api.eu-central-1.elasticbeanstalk.com'
+};
 var APP_ID = 'amzn1.ask.skill.945602c8-2bb8-4fc4-8e06-38c0f203c1b0';
 var SKILL_NAME = 'Sumsi';
 var config = {

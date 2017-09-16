@@ -25302,9 +25302,14 @@ page-form .card {
   background-color: #f0f0f0 !important;
 }
 
-img {
+.img {
   height: 5vh;
-  width: 5vh !important;
+  width: 5vh;
+}
+
+.title-image {
+  width: 70% !important;
+  align: center;
 }
 
 .background {

@@ -95,7 +95,7 @@ const startStateHandlers = Alexa.CreateStateHandler(APP_STATES.START, {
                 completedTasks = tasks.data.filter(function(t) { return t.attributes.state == 'completed' }),
                 possibleEarningsAfterCheck = completedTasks.reduce(function(value, task) { return task.attributes.value + value; }, 0) / 100,
                 possibleEarnings = openTasks.reduce(function(value, task) { return task.attributes.value + value; }, 0) / 100,
-                message = 'Hello Annuk, you currently own ' + balance + ' euro.';
+                message = ' Hello Uter, you currently own ' + balance + ' euro.';
 
             if (ledger.data.attributes.balance == 1337) {
                 message += ' - wow, such impressive, much leet.';
