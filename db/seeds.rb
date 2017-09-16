@@ -7,10 +7,18 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # CLEANUP
+
+AdminUser.delete_all
+ActiveRecord::Base.connection.reset_pk_sequence!('admin_users')
+
 Ledger.delete_all
 ActiveRecord::Base.connection.reset_pk_sequence!('ledgers')
+
 Task.delete_all
 ActiveRecord::Base.connection.reset_pk_sequence!('tasks')
+
+# ADMIN USER
+AdminUser.create!(email: 'sumsi@example.com', password: '123123', password_confirmation: '123123')
 
 # LEDGER
 ledger = Ledger.create(balance: 0)
