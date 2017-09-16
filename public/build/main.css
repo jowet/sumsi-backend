@@ -25199,11 +25199,6 @@ ion-navbar.toolbar {
   }
 }
 
-img {
-  height: 5vh;
-  width: 5vh !important;
-}
-
 .background {
   background-color: #02f002;
 }
@@ -25307,11 +25302,6 @@ page-form .card {
   width: 5vh;
 }
 
-.title-image {
-  width: 70% !important;
-  align: center;
-}
-
 .background {
   background-color: #02f002;
 }
@@ -25372,8 +25362,9 @@ page-home .status {
 
 page-home .Line-Copy-4 {
   width: auto;
-  height: 1.5px;
-  border: solid 1px #9b9b9b;
+  height: 1px;
+  background: #9b9b9b;
+  border: none;
 }
 
 page-home .header .wrap {
