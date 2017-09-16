@@ -24,6 +24,12 @@ AdminUser.create!(email: 'sumsi@example.com', password: '123123', password_confi
 ledger = Ledger.create(balance: 0)
 
 # TASKS
-Task.create(title: 'Clean room',       value: 100, ledger: ledger)
-Task.create(title: 'Fill dishwasher',  value: 150, ledger: ledger)
-Task.create(title: 'Empty dishwasher', value: 200, ledger: ledger)
+2.times do
+  Task.create(title: 'Clean room',       value: 100, ledger: ledger, state: 'completed')
+  Task.create(title: 'Fill dishwasher',  value: 100, ledger: ledger, state: 'completed')
+  Task.create(title: 'Empty dishwasher', value: 300, ledger: ledger, state: 'completed')
+end
+Task.create(title: 'Bring out trash', value: 37, ledger: ledger, state: 'completed')
+Task.all.map(&:close!)
+
+Task.create(title: 'Empty dishwasher', value: 300, ledger: ledger)
