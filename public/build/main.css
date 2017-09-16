@@ -25199,6 +25199,30 @@ ion-navbar.toolbar {
   }
 }
 
+html, body, * {
+  font-family: 'Roboto', sans-serif !important;
+}
+
+.icon {
+  font-family: 'Ionicons' !important;
+}
+
+.back-button-icon {
+  color: #fff !important;
+}
+
+.header .toolbar {
+  height: 64px;
+}
+
+ion-app.ios [padding], ion-app.ios [padding] .scroll-content {
+  padding-top: 24px;
+}
+
+.back-button-text {
+  opacity: 0;
+}
+
 .background {
   background-color: #02f002;
 }
@@ -25236,10 +25260,6 @@ ion-navbar.toolbar {
   box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.16), 0 1px 2.5px 0 rgba(0, 115, 83, 0.25);
   border: solid 0.5px #05aa9d;
   font-size: 5.5vh;
-}
-
-page-form {
-  font-family: Helvetica;
 }
 
 page-form .heading-wrapper {
@@ -25281,12 +25301,12 @@ page-form .konto-wrap {
   color: #05aa9d;
 }
 
-page-form .Kontostand {
+page-form .kontostand {
   height: 5.5vh;
   font-size: 5.5vh;
 }
 
-page-form .Kontostand-text {
+page-form .kontostand-text {
   height: 3.5vh;
   font-size: 3.5vh;
 }
@@ -25297,9 +25317,44 @@ page-form .card {
   background-color: #f0f0f0 !important;
 }
 
+.burger {
+  background-image: url(../../assets/icon/assets/burger.png);
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  background-size: 16px;
+  position: absolute;
+  top: 24px;
+  left: 16px;
+  width: 16px;
+  height: 16px;
+  z-index: 9999999;
+}
+
+.settings {
+  background-image: url(../../assets/icon/assets/Shape@3x.png);
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  background-size: 16px;
+  position: absolute;
+  top: 27px;
+  right: 16px;
+  width: 16px;
+  height: 16px;
+  z-index: 9999999;
+}
+
 .img {
   height: 5vh;
   width: 5vh;
+}
+
+.grind-mit-karrrrrusell {
+  background-image: url(../../assets/icon/assets/carousel.png);
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  padding-bottom: 13px;
+  margin-bottom: 23px;
+  background-size: 26px;
 }
 
 .background {
@@ -25308,6 +25363,10 @@ page-form .card {
 
 .toolbar-background {
   background-color: #db0505;
+}
+
+.fixed-content {
+  background: #f5f5f5;
 }
 
 #chore_title {
@@ -25341,15 +25400,13 @@ page-form .card {
   font-size: 5.5vh;
 }
 
-page-home {
-  font-family: Helvetica;
-}
-
 page-home .heading-wrapper {
   width: auto;
-  margin: auto;
+  margin: 1.5em 0 0 0;
   text-align: left;
   position: relative;
+  padding-bottom: 0.5em;
+  font-weight: bold;
 }
 
 page-home .status {
@@ -25376,7 +25433,7 @@ page-home .header .wrap {
 
 page-home .header .wrap .img_1, page-home .header .wrap .img_2 {
   position: absolute;
-  height: 13,5px;
+  height: 13px;
   width: auto;
   top: 25px;
 }
@@ -25385,14 +25442,19 @@ page-home .konto-wrap {
   color: #05aa9d;
 }
 
-page-home .Kontostand {
+page-home .kontostand {
   height: 5.5vh;
   font-size: 5.5vh;
+  font-weight: 500;
+  font-size: 36px;
 }
 
-page-home .Kontostand-text {
+page-home .kontostand-text {
   height: 3.5vh;
   font-size: 3.5vh;
+  font-weight: 200;
+  font-size: 20px;
+  margin-top: 5px;
 }
 
 page-home .card {

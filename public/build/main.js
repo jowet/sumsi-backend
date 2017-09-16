@@ -1,6 +1,6 @@
 webpackJsonp([0],{
 
-/***/ 108:
+/***/ 107:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -13,11 +13,11 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 108;
+webpackEmptyAsyncContext.id = 107;
 
 /***/ }),
 
-/***/ 150:
+/***/ 149:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -30,19 +30,19 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 150;
+webpackEmptyAsyncContext.id = 149;
 
 /***/ }),
 
-/***/ 195:
+/***/ 194:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FormPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(39);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_chores_chores__ = __webpack_require__(99);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__home_home__ = __webpack_require__(98);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_chores_chores__ = __webpack_require__(98);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__form_form__ = __webpack_require__(195);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -53,6 +53,64 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
+
+var HomePage = (function () {
+    function HomePage(navCtrl, choresProvider) {
+        var _this = this;
+        this.navCtrl = navCtrl;
+        this.choresProvider = choresProvider;
+        // console.log(this.chores);
+        // self=this;
+        this.loadData();
+        // console.log('balance'+this.balance);
+        window.setInterval(function () {
+            _this.loadData();
+        }, 1E3);
+    }
+    HomePage.prototype.markAsDone = function (id) {
+        var _this = this;
+        this.choresProvider.updateChore(id, { 'task': { 'state': 'closed' } }).subscribe(function (data) { _this.loadData(); });
+    };
+    HomePage.prototype.loadData = function () {
+        var _this = this;
+        this.choresProvider.getChores().subscribe(function (result) { return (_this.chores = result.data); });
+        this.choresProvider.getLedger().subscribe(function (result) { return (_this.balance = result.data.attributes.balance); });
+    };
+    HomePage.prototype.addChore = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__form_form__["a" /* FormPage */]);
+    };
+    return HomePage;
+}());
+HomePage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-home',template:/*ion-inline-start:"/Users/koch_roland/Documents/development/playground/sumsi-frontend/src/pages/home/home.html"*/'<div class="burger"></div>\n<div class="settings"></div>\n<ion-header>\n  <ion-navbar>\n    <ion-title style="align:center">\n      <h1 class="title" style="text-align: center;"><img class="title-image" src="../../assets/icon/raiffeisen.png" style="width: 140px;"/></h1>\n    </ion-title>\n    </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <div style="text-align:center">\n    <div class="header" style="display: inline">\n        <div class="wrap">\n            <h2 style="color: #4a4a4a">Uter\'s SpeakyBank</h2>\n        </div>\n        <div style="height: 4px">\n        </div>\n        <ion-grid class="grid grind-mit-karrrrrusell" style="margin-top: -10px;">\n          <ion-row>\n            <ion-col width-10></ion-col>\n            <ion-col width-80>\n              <div class="wrap konto-wrap">\n                <div class="kontostand">\n                    {{ (balance/100 || 0) | currency: \'EUR\':true}}\n                </div>\n                <div class="kontostand-text">\n                    Balance\n                </div>\n              </div>\n            </ion-col>\n            <ion-col width-10>\n              <div style="text-align:right">\n                <button ion-button round (click)="addChore()" id="addChores">+</button>\n              </div>\n            </ion-col>\n            </ion-row>\n        </ion-grid>\n    </div>\n<div class="Line-Copy-4"></div>\n\n    <div class="heading-wrapper">\n        <div class= "status">To Do</div>\n    </div>\n\n    <div *ngFor="let chore of chores">\n      <ion-card *ngIf="chore.attributes.state === \'opened\'">\n        <ion-grid>\n          <ion-row style="height: 10px"></ion-row>\n          <ion-row>\n\n            <ion-col col-2>\n              <img class="img" src="../../assets/icon/assets/Status/OK_Copy.png" (click)="markAsDone(chore.id)">\n            </ion-col>\n\n            <ion-col col-8>\n              <div id="chore_title">\n                {{chore.attributes.title}}\n              </div>\n              <div id="due_date">\n                Until 17. September\n              </div>\n            </ion-col>\n\n            <ion-col width-2>\n              {{chore.attributes.value/100| currency: \'EUR\':true}}\n            </ion-col>\n          </ion-row>\n        </ion-grid>\n      </ion-card>\n    </div>\n    <div class="Line-Copy-4"></div>\n  </div>\n  <div style="text-align:center">\n    <div class="heading-wrapper">\n        <div class= "status">In Review</div>\n    </div>\n\n    <div *ngFor="let chore of chores">\n      <ion-card *ngIf="chore.attributes.state === \'completed\'">\n        <ion-grid>\n          <ion-row style="height: 10px"></ion-row>\n          <ion-row>\n\n            <ion-col col-2>\n              <img class="img" src="../../assets/icon/assets/Status/OK.png" (click)="markAsDone(chore.id)">\n            </ion-col>\n\n            <ion-col col-8>\n              <div id="chore_title">\n                {{chore.attributes.title}}\n              </div>\n              <div id="due_date">\n                Until 17. September\n              </div>\n            </ion-col>\n\n            <ion-col width-2>\n              {{chore.attributes.value/100| currency: \'EUR\':true}}\n            </ion-col>\n          </ion-row>\n        </ion-grid>\n      </ion-card>\n    </div>\n    <div class="Line-Copy-4"></div>\n  </div>\n  <div style="text-align:center">\n    <div class="heading-wrapper">\n        <div class= "status">Done</div>\n    </div>\n\n    <div *ngFor="let chore of chores">\n      <ion-card *ngIf="chore.attributes.state === \'closed\'">\n        <ion-grid>\n          <ion-row style="height: 10px"></ion-row>\n          <ion-row>\n\n            <ion-col col-2>\n              <img class="img" src="../../assets/icon/assets/Status/OK_Green.png" (click)="markAsDone(chore.id)">\n            </ion-col>\n\n            <ion-col col-8>\n              <div id="chore_title">\n                {{chore.attributes.title}}\n              </div>\n              <div id="due_date">\n                Until 17. September\n              </div>\n            </ion-col>\n\n            <ion-col width-2>\n              {{chore.attributes.value/100| currency: \'EUR\':true}}\n            </ion-col>\n          </ion-row>\n        </ion-grid>\n      </ion-card>\n    </div>\n  </div>\n\n\n</ion-content>\n'/*ion-inline-end:"/Users/koch_roland/Documents/development/playground/sumsi-frontend/src/pages/home/home.html"*/
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__providers_chores_chores__["a" /* ChoresProvider */]])
+], HomePage);
+
+//# sourceMappingURL=home.js.map
+
+/***/ }),
+
+/***/ 195:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FormPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_chores_chores__ = __webpack_require__(98);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 
 
 
@@ -75,13 +133,13 @@ var FormPage = (function () {
     };
     FormPage.prototype.AddChore = function () {
         var _this = this;
-        this.choresProvider.createChore({ 'task': { 'title': this.chore_title, 'value': this.amount } }).subscribe(function (data) { _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__home_home__["a" /* HomePage */]); });
+        this.choresProvider.createChore({ 'task': { 'title': this.chore_title, 'value': this.amount } }).subscribe(function (data) { _this.navCtrl.pop(); });
     };
     return FormPage;
 }());
 FormPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-form',template:/*ion-inline-start:"/Users/koch_roland/Documents/development/playground/sumsi-frontend/src/pages/form/form.html"*/'<!--\n  Generated template for the FormPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <!-- <ion-navbar> -->\n    <ion-title>Create Chore</ion-title>\n  <!-- </ion-navbar> -->\n\n</ion-header>\n\n\n<ion-content padding>\n  <ion-list>\n    <ion-item>\n      <ion-label stacked>Chore Name</ion-label>\n      <ion-input type="text"[(ngModel)]="chore_title"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label stacked>Amount</ion-label>\n      <ion-input type="text"[(ngModel)]="amount"></ion-input>\n    </ion-item>\n    </ion-list>\n    <button ion-button block color="secondary" (click)="AddChore()">AddChore</button>\n</ion-content>\n'/*ion-inline-end:"/Users/koch_roland/Documents/development/playground/sumsi-frontend/src/pages/form/form.html"*/,
+        selector: 'page-form',template:/*ion-inline-start:"/Users/koch_roland/Documents/development/playground/sumsi-frontend/src/pages/form/form.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title style="align:center">\n      <h1 class="title" style="text-align: center;"><img class="title-image" src="../../assets/icon/raiffeisen.png" style="width: 200px;"/></h1>\n    </ion-title>\n    </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <ion-list>\n    <ion-item>\n      <ion-label stacked>Chore Name</ion-label>\n      <ion-input type="text"[(ngModel)]="chore_title"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label stacked>Amount</ion-label>\n      <ion-input type="text"[(ngModel)]="amount"></ion-input>\n    </ion-item>\n    </ion-list>\n    <button ion-button block color="secondary" style="background-color: #05aa9d;" (click)="AddChore()">add</button>\n</ion-content>\n'/*ion-inline-end:"/Users/koch_roland/Documents/development/playground/sumsi-frontend/src/pages/form/form.html"*/,
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_chores_chores__["a" /* ChoresProvider */]])
 ], FormPage);
@@ -112,13 +170,13 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(39);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(190);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__ = __webpack_require__(193);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_http__ = __webpack_require__(194);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(189);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__ = __webpack_require__(192);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_http__ = __webpack_require__(193);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_component__ = __webpack_require__(263);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_home_home__ = __webpack_require__(98);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_home_home__ = __webpack_require__(194);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_form_form__ = __webpack_require__(195);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__providers_chores_chores__ = __webpack_require__(99);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__providers_chores_chores__ = __webpack_require__(98);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -178,9 +236,9 @@ AppModule = __decorate([
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(39);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(193);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(190);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(98);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(192);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(189);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(194);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -221,69 +279,9 @@ MyApp = __decorate([
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(39);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_chores_chores__ = __webpack_require__(99);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__form_form__ = __webpack_require__(195);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-var HomePage = (function () {
-    function HomePage(navCtrl, choresProvider) {
-        var _this = this;
-        this.navCtrl = navCtrl;
-        this.choresProvider = choresProvider;
-        // console.log(this.chores);
-        // self=this;
-        this.loadData();
-        // console.log('balance'+this.balance);
-        window.setInterval(function () {
-            _this.loadData();
-        }, 1E3);
-    }
-    HomePage.prototype.markAsDone = function (id) {
-        var _this = this;
-        this.choresProvider.updateChore(id, { 'task': { 'state': 'closed' } }).subscribe(function (data) { _this.loadData(); });
-    };
-    HomePage.prototype.loadData = function () {
-        var _this = this;
-        this.choresProvider.getChores().subscribe(function (result) { return (_this.chores = result.data); });
-        this.choresProvider.getLedger().subscribe(function (result) { return (_this.balance = result.data.attributes.balance); });
-    };
-    HomePage.prototype.addChore = function () {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__form_form__["a" /* FormPage */]);
-    };
-    return HomePage;
-}());
-HomePage = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-home',template:/*ion-inline-start:"/Users/koch_roland/Documents/development/playground/sumsi-frontend/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title style="align:center">\n      <h1 class="title" style="text-align: center;"><img class="title-image" src="../../assets/icon/raiffeisen.png" style="width: 200px;"/></h1>\n    </ion-title>\n    </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <div style="text-align:center">\n    <div class="header" style="display: inline">\n        <div class="wrap">\n            <h2>Uter\'s SpeakyBank</h2>\n        </div>\n        <div style="height: 4px">\n        </div>\n        <ion-grid>\n          <ion-row>\n            <ion-col width-10></ion-col>\n            <ion-col width-80>\n              <div class="wrap konto-wrap">\n                <div class="Kontostand">\n                    {{balance/100 | currency: \'EUR\':true}}\n                </div>\n                <div class="Kontostand-text">\n                    Balance\n                </div>\n              </div>\n            </ion-col>\n            <ion-col width-10>\n              <div style="text-align:right">\n                <button ion-button round (click)="addChore()" id="addChores">+</button>\n              </div>\n            </ion-col>\n            </ion-row>\n        </ion-grid>\n    </div>\n\n<div class="Line-Copy-4">\n</div>\n\n    <div class="heading-wrapper">\n        <div class= "status">To Do</div>\n    </div>\n\n    <div *ngFor="let chore of chores">\n      <ion-card *ngIf="chore.attributes.state === \'opened\'">\n        <ion-grid>\n          <ion-row style="height: 10px"></ion-row>\n          <ion-row>\n\n            <ion-col col-2>\n              <img class="img" src="../../assets/icon/assets/Status/OK_Copy.png" (click)="markAsDone(chore.id)">\n            </ion-col>\n\n            <ion-col col-8>\n              <div id="chore_title">\n                {{chore.attributes.title}}\n              </div>\n              <div id="due_date">\n                Time until 18.09\n              </div>\n            </ion-col>\n\n            <ion-col width-2>\n              {{chore.attributes.value/100| currency: \'EUR\':true}}\n            </ion-col>\n          </ion-row>\n        </ion-grid>\n      </ion-card>\n    </div>\n\n  </div>\n  <div style="text-align:center">\n    <div class="heading-wrapper">\n        <div class= "status">In Review</div>\n    </div>\n\n    <div *ngFor="let chore of chores">\n      <ion-card *ngIf="chore.attributes.state === \'completed\'">\n        <ion-grid>\n          <ion-row style="height: 10px"></ion-row>\n          <ion-row>\n\n            <ion-col col-2>\n              <img class="img" src="../../assets/icon/assets/Status/OK.png" (click)="markAsDone(chore.id)">\n            </ion-col>\n\n            <ion-col col-8>\n              <div id="chore_title">\n                {{chore.attributes.title}}\n              </div>\n              <div id="due_date">\n                Time until 18.09\n              </div>\n            </ion-col>\n\n            <ion-col width-2>\n              {{chore.attributes.value/100| currency: \'EUR\':true}}\n            </ion-col>\n          </ion-row>\n        </ion-grid>\n      </ion-card>\n    </div>\n  </div>\n  <div style="text-align:center">\n    <div class="heading-wrapper">\n        <div class= "status">Done</div>\n    </div>\n\n    <div *ngFor="let chore of chores">\n      <ion-card *ngIf="chore.attributes.state === \'closed\'">\n        <ion-grid>\n          <ion-row style="height: 10px"></ion-row>\n          <ion-row>\n\n            <ion-col col-2>\n              <img class="img" src="../../assets/icon/assets/Status/OK_Green.png" (click)="markAsDone(chore.id)">\n            </ion-col>\n\n            <ion-col col-8>\n              <div id="chore_title">\n                {{chore.attributes.title}}\n              </div>\n              <div id="due_date">\n                Time until 18.09\n              </div>\n            </ion-col>\n\n            <ion-col width-2>\n              {{chore.attributes.value/100| currency: \'EUR\':true}}\n            </ion-col>\n          </ion-row>\n        </ion-grid>\n      </ion-card>\n    </div>\n  </div>\n\n\n</ion-content>\n'/*ion-inline-end:"/Users/koch_roland/Documents/development/playground/sumsi-frontend/src/pages/home/home.html"*/
-    }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__providers_chores_chores__["a" /* ChoresProvider */]])
-], HomePage);
-
-//# sourceMappingURL=home.js.map
-
-/***/ }),
-
-/***/ 99:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ChoresProvider; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(194);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(193);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(264);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
