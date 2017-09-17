@@ -76,7 +76,7 @@ function handleAnswer() {
 
     if (this.event.request.intent.slots.Answer.value == 'yes') {
         completeTask(this.attributes.task.id, function() {
-            self.response.speak("Ok, the chore was marked as completed. Your mum will need to check.");
+            self.response.speak('Great! I will let your parents know and you will get ' + (self.attributes.task.attributes.value / 100) + ' euro if it was done well.');
             self.emit(':responseReady');
         });
     } else if (this.event.request.intent.slots.Answer.value == 'no') {
@@ -108,8 +108,9 @@ const startStateHandlers = Alexa.CreateStateHandler(APP_STATES.START, {
             if (openTasks.length) {
                 var repromptText = ' Did you already ' + openTasks[0].attributes.title + '?';
 
-                message += ' With your new pocket money on Sunday you could earn ' + possibleEarnings + ' euro if you do your ' + openTasks.length;
-                message += openTasks.length > 1 ? ' chores.' : ' chore.'
+                message += ' When you complete all your chores, you could earn additional pocket money of ' + possibleEarnings + ' euro.';
+                // message += ' With your new pocket money on Sunday you could earn ' + possibleEarnings + ' euro if you do your ' + openTasks.length;
+                // message += openTasks.length > 1 ? ' chores.' : ' chore.'
                 message += repromptText
 
                 Object.assign(self.attributes, {
@@ -153,7 +154,7 @@ const triviaStateHandlers = Alexa.CreateStateHandler(APP_STATES.TRIVIA, {
         this.emit(':responseReady');
     },
     'Unhandled': function () {
-        const speechOutput = this.t('TRIVIA_UNHANDLED', ANSWER_COUNT.toString());
+        const speechOutput = this.t('TRIVIA_UNHANDLED', 1);
         this.response.speak(speechOutput).listen(speechOutput);
         this.emit(':responseReady');
     }
