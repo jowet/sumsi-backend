@@ -8,8 +8,10 @@
 const http = require('http');
 const Alexa = require('alexa-sdk');
 const config = {
-    host: 'sumsi-api.eu-central-1.elasticbeanstalk.com'
+    host: 'sumsiapi-env.n2eirghx2d.eu-central-1.elasticbeanstalk.com'
 };
+
+// host: 'sumsi-api.eu-central-1.elasticbeanstalk.com'
 
 const APP_STATES = {
     TRIVIA: '_TRIVIAMODE', // Asking trivia questions.

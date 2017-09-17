@@ -306,7 +306,7 @@ var ChoresProvider = (function () {
     // status:
     function ChoresProvider(http) {
         this.http = http;
-        this.apiString = "http://sumsi-api.eu-central-1.elasticbeanstalk.com/api/ledgers/1";
+        this.apiString = "http://sumsiapi-env.n2eirghx2d.eu-central-1.elasticbeanstalk.com/api/ledgers/1";
     }
     ChoresProvider.prototype.postChore = function (id, title, reward) {
         return this.http.get(this.apiString);
