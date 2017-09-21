@@ -8,7 +8,7 @@
 const http = require('http');
 const Alexa = require('alexa-sdk');
 const config = {
-    host: 'sumsiapi-env.n2eirghx2d.eu-central-1.elasticbeanstalk.com'
+    host: 'default-environment.ad9m43c3dn.us-east-1.elasticbeanstalk.com'
 };
 
 // host: 'sumsi-api.eu-central-1.elasticbeanstalk.com'
@@ -18,7 +18,7 @@ const APP_STATES = {
     START: '_STARTMODE', // Entry point, start the game.
     HELP: '_HELPMODE', // The user is asking for help.
 };
-const APP_ID = 'amzn1.ask.skill.945602c8-2bb8-4fc4-8e06-38c0f203c1b0'; // TODO replace with your app ID (OPTIONAL)
+const APP_ID = 'amzn1.ask.skill.224adee2-b7e4-464a-a201-b7b20df4756b'; // TODO replace with your app ID (OPTIONAL)
 
 /**
  * When editing your questions pay attention to your punctuation. Make sure you use question marks or periods.
